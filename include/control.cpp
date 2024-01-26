@@ -1,4 +1,6 @@
 #include "control.hpp"
+#include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -10,9 +12,9 @@ vector<double>  control::endBodyPos= {0.0,0.0,0.0};
 
 void control::mycontroller(mjModel *m, mjData *d)
 {
-    //get the robot independant control inputs number  
+    //get the robot independant control inputs  
     int n=m->nu;
-   // get the wrist body  
+   //  
     for (size_t i = 0; i < n; i++)
     {   // apply harmonic load 
          d->ctrl[i]=sin(d->time+i*0.5);

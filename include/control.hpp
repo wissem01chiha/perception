@@ -18,6 +18,8 @@ struct control
     
     /**
      * @brief custom user controller 
+     * @param m 
+     * @param d 
     */
     static void mycontroller(mjModel* m, mjData* d);
 

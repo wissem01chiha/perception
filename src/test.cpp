@@ -15,7 +15,8 @@
  
 #include "mujoco/mujoco.h"
 #include "GLFW/glfw3.h"
-#include "glm.hpp"
+#include "../glm/glm.hpp"
+ 
  
 
  
@@ -32,11 +33,14 @@
 #include "../include/utils.cpp"
 #include"../include/control.hpp"
 #include"../include/control.cpp"
+#include "../include/view.hpp"
+#include"../include/view.cpp"
+#include"../include/callbk.hpp"
+#include"../include/callbk.cpp"
  
  
 // MuJoCo data structures
 mjModel*         m;           // MuJoCo model
-mjModel*     scene;
 mjData*          d;           // MuJoCo data
 mjvCamera      cam;           // abstract camera
 mjvOption      opt;           // visualization options
@@ -56,7 +60,8 @@ float fov   =  45.0f;
         fov = 45.0f;
 }
  
-
+ 
+ 
  
 
 
@@ -88,6 +93,17 @@ int main(int argc, const char* argv[]){
     d = mj_makeData(m);
    
     
+// camera
+glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f, 0.0f);
+
+
+
+
+
+
+
     
     // get the 
     mjtNum t= d->time; 
@@ -141,18 +157,20 @@ int main(int argc, const char* argv[]){
     while (!glfwWindowShouldClose(window))
     {
        // call GLFW events callbacks
-       
+        //float currentFrame = static_cast<float>(glfwGetTime());
         // pass projection matrix to shader (note that in this case it could change every frame)
-        //glm::mat4 projection = glm::perspective(glm::radians(fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        //ourShader.setMat4("projection", projection);
+        //glm::mat4 projection = glm::perspective(glm::radians(fov), (float)600 / (float)800, 0.1f, 100.0f);
+        //glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+
+       
         mjtNum simstart = d->time;
         //rest all data poses to thoses in mjmodel xml defualt and control 
         // and forces to 0
         mj_resetData(m,d);
         //computes the forward kinmatics of the model 
-        
+       
         while (d->time - simstart <  global::simTime){  
-            glfwSetCursorPosCallback(window,  scroll_callback);
+            glfwSetCursorPosCallback(window, callbk::scroll_callback);
             // advance simulation before external force and control are applied 
             mj_step1(m, d);
             control::mycontroller(m,d);
@@ -180,15 +198,4 @@ int main(int argc, const char* argv[]){
         glfwPollEvents();
 }
 }
-/**
- * void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
-{
-    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-    {
-        double xpos, ypos;     
-        glfwGetCursorPos(window, &xpos, &ypos); 
-
-        // [...]
-    }
-}
-*/
+ 
