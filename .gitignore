@@ -1,0 +1,5 @@
+mujoco/
+.vscode/
+sciplot/
+glfw/
+glm/
