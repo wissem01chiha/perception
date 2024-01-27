@@ -2,6 +2,7 @@
 #define CONTROL_HPP
 
 #include"mujoco/mujoco.h"
+#include <vector>
 using namespace std;
 
 /**
@@ -17,10 +18,10 @@ struct control
   
     
     /**
-     * @brief custom user controller 
+     * @brief simple controller apply damping for each dof 
      * @param m 
      * @param d 
-    */
+     */
     static void mycontroller(mjModel* m, mjData* d);
 
     /**

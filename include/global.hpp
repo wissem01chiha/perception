@@ -29,7 +29,7 @@ struct global
     static   int          windowLength       ;
     static   int          bufferSwap         ;
     static   int          bufferErrorSize    ;
-    static   int          geomtrySceneNb     ;
+    static   int          geomtryScene       ;
     static   double       simTime            ;
     static   const char*  windowTitle        ;
     static   string       modelFilePath      ;

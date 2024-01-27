@@ -1,5 +1,4 @@
-// view.cpp
-#include "view.hpp"
+#include"view.hpp"
 
-float glview::zoom = 1.0;
  
+  float Glview::yaw =1.0f;

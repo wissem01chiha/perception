@@ -15,8 +15,7 @@
  
 #include "mujoco/mujoco.h"
 #include "GLFW/glfw3.h"
-#include "../glm/glm.hpp"
- 
+#include "glm.hpp"
  
 
  
@@ -33,14 +32,11 @@
 #include "../include/utils.cpp"
 #include"../include/control.hpp"
 #include"../include/control.cpp"
-#include "../include/view.hpp"
-#include"../include/view.cpp"
-#include"../include/callbk.hpp"
-#include"../include/callbk.cpp"
- 
+#include"callbk.hpp"
  
 // MuJoCo data structures
 mjModel*         m;           // MuJoCo model
+mjModel*     scene;
 mjData*          d;           // MuJoCo data
 mjvCamera      cam;           // abstract camera
 mjvOption      opt;           // visualization options
@@ -50,18 +46,7 @@ mjvPerturb    pert;           // set th default perturbation
 
 using namespace std;
 //*********************GLFW *****************************
-float fov   =  45.0f;
- void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-{
- fov -= (float)yoffset;
-    if (fov < 1.0f)
-        fov = 1.0f;
-    if (fov > 45.0f)
-        fov = 45.0f;
-}
- 
- 
- 
+
  
 
 
@@ -93,17 +78,6 @@ int main(int argc, const char* argv[]){
     d = mj_makeData(m);
    
     
-// camera
-glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f, 3.0f);
-glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f, 0.0f);
-
-
-
-
-
-
-
     
     // get the 
     mjtNum t= d->time; 
@@ -142,7 +116,7 @@ glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f, 0.0f);
     mjv_defaultOption(&opt);
     mjr_defaultContext(&con);
     // create scene and context
-    mjv_makeScene(m, &scn, global::geomtrySceneNb);
+    mjv_makeScene(m, &scn, global::geomtryScene);
     mjr_makeContext(m, &con, mjFONTSCALE_100);
     
     // get the number of bodies of the model 
@@ -157,20 +131,18 @@ glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f, 0.0f);
     while (!glfwWindowShouldClose(window))
     {
        // call GLFW events callbacks
-        //float currentFrame = static_cast<float>(glfwGetTime());
-        // pass projection matrix to shader (note that in this case it could change every frame)
-        //glm::mat4 projection = glm::perspective(glm::radians(fov), (float)600 / (float)800, 0.1f, 100.0f);
-        //glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-
        
+        // pass projection matrix to shader (note that in this case it could change every frame)
+        //glm::mat4 projection = glm::perspective(glm::radians(fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        //ourShader.setMat4("projection", projection);
         mjtNum simstart = d->time;
         //rest all data poses to thoses in mjmodel xml defualt and control 
         // and forces to 0
         mj_resetData(m,d);
         //computes the forward kinmatics of the model 
-       
+        
         while (d->time - simstart <  global::simTime){  
-            glfwSetCursorPosCallback(window, callbk::scroll_callback);
+            glfwSetCursorPosCallback(window,  scroll_callback);
             // advance simulation before external force and control are applied 
             mj_step1(m, d);
             control::mycontroller(m,d);

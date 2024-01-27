@@ -1,10 +1,10 @@
 #**************************************************
 # Makefile 
 #
-#
+# Author : wissem chiha 
 #**************************************************
 # Set The Compiler 
-CC :=g++
+CC :=g++ 
 # Compiler flags
 CFLAGS :=  -I./mujoco/include  -I./glfw/include -I./include -I./glm
 # Linker flags

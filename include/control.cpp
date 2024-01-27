@@ -1,7 +1,6 @@
 #include "control.hpp"
-#include <vector>
 #include <iostream>
-
+#include"mujoco/mujoco.h"
 using namespace std;
 
 
@@ -12,9 +11,9 @@ vector<double>  control::endBodyPos= {0.0,0.0,0.0};
 
 void control::mycontroller(mjModel *m, mjData *d)
 {
-    //get the robot independant control inputs  
+    //get the robot independant control inputs number  
     int n=m->nu;
-   //  
+   // get the wrist body  
     for (size_t i = 0; i < n; i++)
     {   // apply harmonic load 
          d->ctrl[i]=sin(d->time+i*0.5);
@@ -24,7 +23,8 @@ void control::mycontroller(mjModel *m, mjData *d)
 
 
 void control::getState(mjModel*m,mjData*d){
-    // get the number of genrisled coordinates 
+    // get the number of genrisled coordinates
+    int x=m->nu; 
 
 }
 
