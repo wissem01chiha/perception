@@ -6,13 +6,21 @@
 - [Description](#description)  
 - [Installation](#installation)
 - [Documentation](#documentation)
+- [Referance](#references)
 - [Contributing](#contributing)
 - [License](#license)
 ## Overview
 This is an open source project 
 ## Description
 implmetation of adaptative contol schema for the ur5e robot 
+## Installation
+#### build the package 
+#### run prebuild binaries
+through git :
 
+        git clone  https://github.com/wissem01chiha/MjUr5e.git
+we recommand using vcpkg 
+install make on windows : 
 ## References
 
 - **MuJoCo Official Documentation by DeepMind:**  
@@ -32,14 +40,7 @@ implmetation of adaptative contol schema for the ur5e robot
 - **Robust Control, Adaptive Control and Robust Adaptive Control—Application to Robotic Manipulators:**  
   [Robust Control, Adaptive Control and Robust Adaptive Control—Application to Robotic Manipulators](https://www.mdpi.com/2411-5134/4/3/49)
 
-## Installation
-#### build the package 
-#### run prebuild binaries
-through git :
 
-        git clone  https://github.com/wissem01chiha/MjUr5e.git
-we recommand using vcpkg 
-install make on windows : 
 ## Documentation 
 to get the end effector position in cartesian coordiantes : 
 https://roboti.us/forum/index.php?threads/cartesian-coordinates-of-body.3376/

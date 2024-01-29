@@ -15,4 +15,4 @@ int         global::bufferErrorSize   = 1000                ;
 int         global::bufferSwap        = 1                   ;
 int         global::windowLength      = 1000                ;
 int         global::windowWidth       = 1200                ;
-double      global::intialPosition[6] = {0,0,0,0,0,0}       ; 
+double      global::intialPosition[6] = {.0,.0,.0,.0,.0,.0} ; 

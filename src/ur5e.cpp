@@ -23,6 +23,7 @@
 
 // private include
 #include"../include/global.hpp"
+#include"../include/global.cpp"
 
 //global variables
 char error[1000] ;
@@ -59,15 +60,33 @@ int main(int argc, const char* argv[])
     }
     // set initial sate position to default
     d->qpos = global::intialPosition;
+
     // init GLFW
     glfwInit();
+
     // create window, request v-sync
     GLFWwindow* window = glfwCreateWindow (global::windowLength,global::windowWidth, global::windowTitle, NULL, NULL);
+
     //  make OpenGL context current
     glfwMakeContextCurrent(window);
-    //
-    glfwSwapInterval(global::bufferSwap); 
 
+    // ste the openGL swap interval 
+    glfwSwapInterval(global::bufferSwap);
+
+    // initialize visualization data structures
+    mjv_defaultFreeCamera(m, &cam);
+    mjv_defaultPerturb(&pert);
+    mjv_defaultOption(&opt);
+    mjr_defaultContext(&con);
+
+    // create scene and context
+    mjv_makeScene(m, &scn, global::geomtryScene);
+    mjr_makeContext(m, &con, mjFONTSCALE_100);
+
+    //  main loop 
+    while (!glfwWindowShouldClose(window)){
+
+    }
  }
     return 0;
 
