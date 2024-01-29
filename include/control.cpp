@@ -1,34 +1,24 @@
-#include "control.hpp"
-#include <iostream>
+#include"control.hpp"
+#include<iostream>
 #include"mujoco/mujoco.h"
-using namespace std;
+ 
+
+// this is the body considered as the  end-effector 
+const char *         control::endBodyName = "wrist_3_link" ;
+std::vector<double>  control::endBodyPos  = {0.0,0.0,0.0}  ;
+double               control::damping     = 1.2            ;
 
 
-const char * control::endBodyName= "wrist_3_link";
-vector<double>  control::endBodyPos= {0.0,0.0,0.0};
 
 
-
-void control::mycontroller(mjModel *m, mjData *d)
-{
-    //get the robot independant control inputs number  
-    int n=m->nu;
-   // get the wrist body  
-    for (size_t i = 0; i < n; i++)
-    {   // apply harmonic load 
-         d->ctrl[i]=sin(d->time+i*0.5);
-    }
-   // mju_scl(d->ctrl, d->qvel, -0.1, m->nv);
+void control::dampController(mjModel *m, mjData *d, double damping )
+{   
+    // set d->ctrl = d->qvel* scl .
+    mju_scl(d->ctrl, d->qvel, damping, m->nv);
 }
 
 
-void control::getState(mjModel*m,mjData*d){
-    // get the number of genrisled coordinates
-    int x=m->nu; 
-
-}
-
-
+ 
 
 void control::getBodyPose(const mjModel *m, mjData * d, const char* bodyName)
 {
@@ -39,13 +29,13 @@ void control::getBodyPose(const mjModel *m, mjData * d, const char* bodyName)
         int qposadr = m->jnt_qposadr[m->body_jntadr[id]];
         // compute forward dynamics 
         mj_forward(m,d); 
-        //
+        // set the body pose vector values  
         control::endBodyPos[0]=d->xpos[3*qposadr+1];
         control::endBodyPos[1]=d->xpos[3*qposadr+2];
         control::endBodyPos[2]=d->xpos[3*qposadr+3];
-    }else{
+    }else
+    {
         // body not found 
         cout << "body "<< bodyName << "not found !";
-       
     }
 }

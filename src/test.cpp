@@ -32,7 +32,7 @@
 #include "../include/utils.cpp"
 #include"../include/control.hpp"
 #include"../include/control.cpp"
-#include"callbk.hpp"
+#include"../include/callbk.hpp"
  
 // MuJoCo data structures
 mjModel*         m;           // MuJoCo model
@@ -144,19 +144,17 @@ int main(int argc, const char* argv[]){
         while (d->time - simstart <  global::simTime){  
             glfwSetCursorPosCallback(window,  scroll_callback);
             // advance simulation before external force and control are applied 
+            d->ctrl[2]=sin(d->time);
             mj_step1(m, d);
-            control::mycontroller(m,d);
+            
+            control::dampController(m,d,control::damping);
             // integrate state
             mj_step2(m, d);
+            
             // get end effector cartesian position 
             control::getBodyPose(m,d,control::endBodyName) ;
-            //cout << control::endBodyPos[1] << "\n";
-            
+            cout << control::endBodyPos[1] << "\n";
              
-           
-            // int qveladr = m->jnt_dofadr[m->body_jntadr[id]];
-         
-            
         }
         // get framebuffer viewport
         mjrRect viewport = {0, 0, 0, 0};
@@ -169,5 +167,9 @@ int main(int argc, const char* argv[]){
         // process pending GUI events, call GLFW callbacks
         glfwPollEvents();
 }
+// close GLFW, free visualization storage
+glfwTerminate();
+mjv_freeScene(&scn);
+mjr_freeContext(&con);
 }
  

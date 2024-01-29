@@ -1,37 +1,40 @@
 ## simulation of a UR5E robot arm manipulator using MuJoCo 
 
-
+ 
 ### Table of Contents
-- [MjUr5e Package](#project-name)
-- [Table of Contents](#table-of-contents)
+- [Overview](#overview)
 - [Description](#description)  
 - [Installation](#installation)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 - [License](#license)
-## MjUr5e Package 
+## Overview
 This is an open source project 
 ## Description
 implmetation of adaptative contol schema for the ur5e robot 
 
-## Refernance 
+## References
 
-Mujoco official documentation :  
-https://mujoco.readthedocs.io/en/stable/overview.html  
+- **MuJoCo Official Documentation by DeepMind:**  
+  [MuJoCo](https://mujoco.readthedocs.io/en/stable/overview.html)
 
- 
+- **GLFW Documentation:**  
+  [GLFW Documentation](https://www.glfw.org/docs/3.3/build_guide.html)
 
-for more details on GLFW refer to the documentation :   
-https://www.glfw.org/docs/3.3/build_guide.html  
+- **Learning OpenGL:**  
+  [LearnOpenGL](https://learnopengl.com/)  
+- **Universal Robot UR documentation**  
+[DH Parameters for calculations of kinematics and dynamics](https://www.universal-robots.com/articles/ur/application-installation/dh-parameters-for-calculations-of-kinematics-and-dynamics/?utm_medium=DSMN8&utm_source=LinkedIn)
 
-https://learnopengl.com/
+- **Adaptive Control of Robot Manipulators With Uncertain Kinematics and Dynamics:**  
+  [Adaptive Control of Robot Manipulators With Uncertain Kinematics and Dynamics (PDF)](https://arxiv.org/pdf/1403.5204v2.pdf)
 
-[Adaptive Control of Robot Manipulators With
-Uncertain Kinematics and Dynamics](https://arxiv.org/pdf/1403.5204v2.pdf)  
+- **Robust Control, Adaptive Control and Robust Adaptive Control—Application to Robotic Manipulators:**  
+  [Robust Control, Adaptive Control and Robust Adaptive Control—Application to Robotic Manipulators](https://www.mdpi.com/2411-5134/4/3/49)
 
-[Robust Control, Adaptive Control and Robust Adaptive Control—Application to Robotic Manipulators](https://www.mdpi.com/2411-5134/4/3/49)
- 
 ## Installation
+#### build the package 
+#### run prebuild binaries
 through git :
 
         git clone  https://github.com/wissem01chiha/MjUr5e.git
@@ -48,3 +51,9 @@ Also, please feel free to mail to :
 
 - chihawissem08@gmail.com  
 - wissem.chiha@ept.ucar.tn
+
+
+
+<!--img src="tmp/icon.png" alt="A cute cat" width="100" height="50"-->
+
+[def]: https://github.com/github/docs/actions/workflows/main.yml/badge.svg?event=push

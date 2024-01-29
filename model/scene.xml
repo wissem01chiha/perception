@@ -21,6 +21,6 @@
   <worldbody>
     <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
     <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
-    <geom name="object" size="0.1 0.1 0.1" type="sphere" rgba="0.5 0.5 0.5 1" pos="0.0 0.5 0.0"/>
+    <!geom name="object" size="0.1 0.1 0.1" type="sphere" rgba="0.5 0.5 0.5 1" pos="0.0 0.5 0.0"/>
   </worldbody>
 </mujoco>

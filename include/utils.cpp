@@ -1,5 +1,5 @@
 //utils.cpp
-#include "utils.hpp"
+#include"utils.hpp"
 #include<vector>
 #include<string>
 #include<iostream>
@@ -24,7 +24,8 @@ void Data::array2csv(const std::vector<double>& array, const std::string& filena
         }
         file.close();
         std::cout << "Data written to " << filename << " successfully." << std::endl;
-    } else {
+    }
+    else{
         std::cerr << "Error: Unable to open file " << filename << std::endl;
     }
 }
