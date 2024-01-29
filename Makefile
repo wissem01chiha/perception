@@ -3,7 +3,7 @@
 #
 # Author : wissem chiha 
 # Date   : Januray 2024
-# Notes  : built with GNU make 4.3 
+# Notes  : built with GNU Make 4.3 
 #**********************************************************************
 # Set the source directory 
 SRCDIR := src
@@ -34,18 +34,12 @@ $(BINDIR)/%: $(OBJDIR)/%.o
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
- 
-	
 $(OBJDIR):
 	@echo "create object files folder"
 	@mkdir $(OBJDIR)
-
-
-
 # delete obj folder and all .o files 
 clean:
 	rm -rf $(EXECUTABLES)
-
 log :
 	@echo "building package mjUr5e..."
 	

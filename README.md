@@ -23,24 +23,27 @@ we recommand using vcpkg
 install make on windows : 
 ## References
 
-- **MuJoCo Official Documentation by DeepMind:**  
+- **MuJoCo Official Documentation by DeepMind:**
   [MuJoCo](https://mujoco.readthedocs.io/en/stable/overview.html)
 
-- **GLFW Documentation:**  
+- **GLFW Documentation:**
   [GLFW Documentation](https://www.glfw.org/docs/3.3/build_guide.html)
 
-- **Learning OpenGL:**  
+- **Learning OpenGL:**
   [LearnOpenGL](https://learnopengl.com/)  
-- **Universal Robot UR documentation**  
+- **Universal Robot UR documentation**
 [DH Parameters for calculations of kinematics and dynamics](https://www.universal-robots.com/articles/ur/application-installation/dh-parameters-for-calculations-of-kinematics-and-dynamics/?utm_medium=DSMN8&utm_source=LinkedIn)
 
-- **Adaptive Control of Robot Manipulators With Uncertain Kinematics and Dynamics:**  
+- **Adaptive Control of Robot Manipulators With Uncertain Kinematics and Dynamics:**
   [Adaptive Control of Robot Manipulators With Uncertain Kinematics and Dynamics (PDF)](https://arxiv.org/pdf/1403.5204v2.pdf)
 
-- **Robust Control, Adaptive Control and Robust Adaptive Control—Application to Robotic Manipulators:**  
+- **Robust Control, Adaptive Control and Robust Adaptive Control—Application to Robotic Manipulators:**
   [Robust Control, Adaptive Control and Robust Adaptive Control—Application to Robotic Manipulators](https://www.mdpi.com/2411-5134/4/3/49)
+- **Large Scale Software design-John-Lakos** 
+   [book_link](https://archive.org/details/largescalecsoftw00lako)
 
-
+ -  **Makefile tutoriel** 
+  [Makefiles](https://makefiletutorial.com/)
 ## Documentation 
 to get the end effector position in cartesian coordiantes : 
 https://roboti.us/forum/index.php?threads/cartesian-coordinates-of-body.3376/
