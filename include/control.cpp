@@ -1,14 +1,13 @@
+//control.cpp
 #include"control.hpp"
 #include<iostream>
 #include"mujoco/mujoco.h"
  
 
-// this is the body considered as the  end-effector 
-const char *         control::endBodyName = "wrist_3_link" ;
-std::vector<double>  control::endBodyPos  = {0.0,0.0,0.0}  ;
-double               control::damping     = 1.2            ;
-
-
+const char *         control::endBodyName    = "wrist_3_link" ;
+std::vector<double>  control::endBodyPos     = {0.0,0.0,0.0}  ;
+double               control::damping        = 1.01           ;
+std::vector<double>  control::endEffectorPos = {0.0,0.0,0.0}  ;
 
 
 void control::dampController(mjModel *m, mjData *d, double damping )
@@ -17,8 +16,6 @@ void control::dampController(mjModel *m, mjData *d, double damping )
     mju_scl(d->ctrl, d->qvel, damping, m->nv);
 }
 
-
- 
 
 void control::getBodyPose(const mjModel *m, mjData * d, const char* bodyName)
 {
@@ -36,6 +33,18 @@ void control::getBodyPose(const mjModel *m, mjData * d, const char* bodyName)
     }else
     {
         // body not found 
-        cout << "body "<< bodyName << "not found !";
+        std::cout << "body "<< bodyName << "not found !";
     }
+}
+
+void control::savePos(const mjModel* m, mjData* d , const char* posFilename){
+    
+}
+
+void control::forwardKinematics(const mjModel*m, mjData*d){
+
+control::endEffectorPos[0]=cos(d->qpos[0])*sin(d->qpos[1]+d->qpos[2]+d->qpos[3]);
+control::endEffectorPos[1]=1;
+control::endEffectorPos[2]=1;
+
 }

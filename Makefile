@@ -5,12 +5,16 @@
 # Date   : Januray 2024
 # Notes  : built with GNU Make 4.3 
 #**********************************************************************
+#
+#**********************************************************************
 # Set the source directory 
 SRCDIR := src
 # Set the object directory
 OBJDIR := obj
 # Set the bin directory
 BINDIR := bin
+#**********************************************************************
+#
 #**********************************************************************
 # Set The Compiler 
 CC :=g++ 
@@ -25,6 +29,8 @@ SOURCES := $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS := $(patsubst  $(SRCDIR)/%.cpp, obj/%.o, $(SOURCES))
 # List of all the executable
 EXECUTABLES := $(patsubst  $(SRCDIR)/%.cpp, $(BINDIR)/%, $(SOURCES))  
+#**********************************************************************
+#
 #**********************************************************************
 # set default target 
 all : log  $(EXECUTABLES)	

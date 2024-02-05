@@ -20,17 +20,19 @@
 
 // GLFW include
 #include "GLFW/glfw3.h"
-#include "glm.hpp"
+#include "../glm/glm.hpp"
+
 
 // private include
 #include"../include/global.hpp"
 #include"../include/global.cpp"
 #include"../include/control.hpp"
 #include"../include/control.cpp"
+ 
 
 //global variables
 char error[1000] ;
- 
+float xscale=100.0f, yscale=100.0f;
 
 // MuJoCo data structures
 mjModel*         m;           // MuJoCo model
@@ -44,8 +46,6 @@ mjvPerturb    pert;           // set th default perturbation
 // main loop 
 int main(int argc, const char* argv[])
 {   
-    
-  
     string filePath;
     if (argc >1)
     {   
@@ -70,23 +70,26 @@ int main(int argc, const char* argv[])
 
     // create window, request v-sync
     GLFWwindow* window = glfwCreateWindow (global::windowLength,global::windowWidth, global::windowTitle, NULL, NULL);
+    
+    // set time elapsed since GLFW was initialized
+    double startTime = glfwGetTime();
+    
 
-    //
     if (glfwRawMouseMotionSupported()){ 
         glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
        }
 
     //  make OpenGL context current
     glfwMakeContextCurrent(window);
-
+   
     // ste the openGL swap interval 
     glfwSwapInterval(global::bufferSwap);
 
     // initialize visualization data structures
-    mjv_defaultFreeCamera(m,&cam);
+    mjv_defaultCamera(&cam)  ;
     mjv_defaultPerturb(&pert);
-    mjv_defaultOption(&opt);
-    mjr_defaultContext(&con);
+    mjv_defaultOption(&opt)  ;
+    mjr_defaultContext(&con) ;
 
     // create scene and context
     mjv_makeScene(m, &scn, global::geomtryScene);
@@ -95,15 +98,19 @@ int main(int argc, const char* argv[])
     mjtNum roomup[3] = {-5.0, 18.0, -1.0};
     //  main loop 
     while (!glfwWindowShouldClose(window)){
-        // get time 
+
+       
+        // get GLFW time elapsed
+        double glfwtime=glfwGetTime()-startTime;
+        std::cout << glfwtime<< "\n";
+        
+        glfwGetWindowContentScale(window, &xscale, &yscale);
         mjtNum simstart = d->time;
         while (d->time - simstart <  global::simTime){
-            //d->ctrl[2]=sin(d->time);
             mj_step1(m, d);
-            mjv_moveModel(m,mjMOUSE_ROTATE_H,1.1,0.8,roomup,&scn);
+           
             control::dampController(m,d,control::damping);
             mj_step2(m, d);
-            mjv_moveModel(m,mjMOUSE_ROTATE_H,1.5,1.8,roomup,&scn);
         }
         // get framebuffer viewport
         mjrRect viewport = {0, 0, 0, 0};

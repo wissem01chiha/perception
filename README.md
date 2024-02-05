@@ -1,4 +1,4 @@
-## simulation of a UR5E robot arm manipulator using MuJoCo 
+## simulation of a Ur5e robot arm manipulator using MuJoCo 
 
  
 ### Table of Contents
@@ -10,10 +10,22 @@
 - [Contributing](#contributing)
 - [License](#license)
 ## Overview
-This is an open source project 
+the project 
 ## Description
 implmetation of adaptative contol schema for the ur5e robot 
 ## Installation
+ 
+the package depend on the flowing libraies :
+- **mujoco** 
+
+- **GLFW**
+
+- **GLM**
+- **std_image**
+
+- **sciplot** 
+
+
 #### build the package 
 #### run prebuild binaries
 through git :
