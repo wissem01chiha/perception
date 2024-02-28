@@ -1,6 +1,7 @@
-## simulation of a Ur5e robot arm manipulator using MuJoCo 
+## simulation of a ur5e robot arm manipulator using 
 
- 
+![GitHub License](https://img.shields.io/github/license/wissem01chiha/MjUr5e)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/wissem01chiha/MjUr5e)
 ### Table of Contents
 - [Overview](#overview)
 - [Description](#description)  

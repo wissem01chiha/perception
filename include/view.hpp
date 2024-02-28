@@ -1,10 +1,10 @@
 #ifndef VIEW_HPP
 #define VIEW_HPP
 
-#include"glm.hpp"
+ 
 
 /**
- * @brief view struct : handle all openGL settings
+ * @brief view struct : settings for rending and pltting settings 
  * @param yaw     - yaw 
  * @param pitch   - pitch 
  * @param lastX   - lastX 

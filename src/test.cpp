@@ -32,7 +32,7 @@
 #include "../include/utils.cpp"
 #include"../include/control.hpp"
 #include"../include/control.cpp"
-#include"../include/callbk.hpp"
+ 
  
 // MuJoCo data structures
 mjModel*         m;           // MuJoCo model
@@ -142,18 +142,19 @@ int main(int argc, const char* argv[]){
         //computes the forward kinmatics of the model 
         
         while (d->time - simstart <  global::simTime){  
-            glfwSetCursorPosCallback(window,  scroll_callback);
+             
             // advance simulation before external force and control are applied 
-            d->ctrl[2]=sin(d->time);
-            mj_step1(m, d);
-            
+            //mj_step1(m, d);
+            d->ctrl[4]=2;
+            d->ctrl[3]=2;
+            d->ctrl[2]=-2;
             control::dampController(m,d,control::damping);
             // integrate state
-            mj_step2(m, d);
+            mj_step(m, d);
             
             // get end effector cartesian position 
-            control::getBodyPose(m,d,control::endBodyName) ;
-            cout << control::endBodyPos[1] << "\n";
+            control::getBodyPose(m,d,control::BodyName) ;
+            cout << control::BodyPos[1] << "\n";
              
         }
         // get framebuffer viewport

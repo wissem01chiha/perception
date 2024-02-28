@@ -4,9 +4,9 @@
 #include"mujoco/mujoco.h"
  
 
-const char *         control::endBodyName    = "wrist_3_link" ;
-std::vector<double>  control::endBodyPos     = {0.0,0.0,0.0}  ;
-double               control::damping        = 1.01           ;
+const char *         control::BodyName    = "wrist_3_link" ;
+std::vector<double>  control::BodyPos     = {0.0,0.0,0.0}  ;
+double               control::damping        = 0.4           ;
 std::vector<double>  control::endEffectorPos = {0.0,0.0,0.0}  ;
 
 
@@ -27,12 +27,11 @@ void control::getBodyPose(const mjModel *m, mjData * d, const char* bodyName)
         // compute forward dynamics 
         mj_forward(m,d); 
         // set the body pose vector values  
-        control::endBodyPos[0]=d->xpos[3*qposadr+1];
-        control::endBodyPos[1]=d->xpos[3*qposadr+2];
-        control::endBodyPos[2]=d->xpos[3*qposadr+3];
+        control::BodyPos[0]=d->xpos[3*qposadr+1];
+        control::BodyPos[1]=d->xpos[3*qposadr+2];
+        control::BodyPos[2]=d->xpos[3*qposadr+3];
     }else
-    {
-        // body not found 
+    {   // body not found 
         std::cout << "body "<< bodyName << "not found !";
     }
 }

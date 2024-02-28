@@ -12,11 +12,12 @@
  *                           to  the global frame.
  * @param damping          - damping factor parameter
  * @param endEffectorPos   - position of the robot end-effector
+ * 
 */
 struct control
 {   
-    static const char*         endBodyName   ;
-    static std::vector<double> endBodyPos    ;
+    static const char*         BodyName      ;
+    static std::vector<double> BodyPos       ;
     static double              damping       ;
     static std::vector<double> endEffectorPos;
   
@@ -29,6 +30,13 @@ struct control
      */
     static void dampController(mjModel* m, mjData* d, double damping);
 
+
+    /**
+     * @brief  sets the name of the body link of a robot to get acess to getbodyPose 
+     *         and other future methods 
+     * @param BodyName 
+     */
+    void static setBodyName(const char* BodyName);
     /**
      * @brief compute the cartesian position of the end body of the model- 
      *        result will be stord in control : : endBodyPos 
@@ -47,10 +55,26 @@ struct control
 
    /**
     * @brief return the x , y and z position of the robot end effector 
+    *        the result is stored in endEffectorPos variable array.
     * @param m   - mujocco model object
     * @param d   - mojocco data object
     */
    static void forwardKinematics(const mjModel*m, mjData*d);
+
+   /**
+    * @brief  mpc : initate the model predictive controller of the robot 
+    *         compute the control input to obtain the desired trajectory 
+    * @param m  - mujocco model object
+    * @param d  - mojocco data object
+    * @param H 
+    * @param M 
+    * @param Weights 
+    * @param Ts 
+    * @param referenceTrajectory 
+    */
+   static void mpc(const mjModel*m, mjData*d, int64_t H, int64_t M,
+                   std::vector<float> Weights,float Ts,
+                   std::vector<float> referenceTrajectory);
 
 
 

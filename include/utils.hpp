@@ -7,9 +7,9 @@
  
 /**
  * @brief represents a point in 3D cartesian space.
- * @param x 
- * @param y 
- * @param z 
+ * @param x  x coordiante 
+ * @param y  y-corrdinate 
+ * @param z  z-coordinate
 */
 struct point3D
 {
