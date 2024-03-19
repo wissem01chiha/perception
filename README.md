@@ -2,13 +2,13 @@
 
 # Robotic Perception Algorithms 
 
-A Python project template to save you time and energy.
+A Python Implmentation of General use Perception Algorithms 
 
 [![Build Status](https://github.com/Justintime50/python-template/workflows/build/badge.svg)](https://github.com/Justintime50/python-template/actions)
 [![Coverage Status](https://coveralls.io/repos/github/Justintime50/python-template/badge.svg?branch=main)](https://coveralls.io/github/Justintime50/python-template?branch=main)
 [![Licence](https://img.shields.io/github/license/justintime50/python-template)](LICENSE)
 
-<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/python-template/showcase.png" alt="Showcase">
+<!--img src="https://raw.githubusercontent.com/justintime50/assets/main/src/python-template/showcase.png" alt="Showcase"-->
 
 </div>
 
