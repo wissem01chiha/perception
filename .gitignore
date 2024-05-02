@@ -1,5 +1,1 @@
-mujoco/
-.vscode/
-sciplot/
-glfw/
-glm/
+dataset/
