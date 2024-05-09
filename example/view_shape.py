@@ -1,25 +1,10 @@
 import vtk
 import random
-
-def read_off(file_path):
-    points = []
-    with open(file_path, 'r') as f:
-        lines = f.readlines()
-        if lines[0].strip() != 'OFF':
-            print("Invalid OFF file")
-            return None
-        num_points = int(lines[1].split()[0])
-        for line in lines[2:2+num_points]:
-            coords = line.strip().split()
-            points.append([float(coords[0]), float(coords[1]), float(coords[2])])
-    return points
-
-
-
+import utilities
 
 def main():
     filename = 'C:/Users/chiha/OneDrive/Documents/robotics-perception/dataset/ModelNet10/sofa/train/sofa_0200.off'
-    points = read_off(filename)
+    points   = load_points(filename)
 
     # Create VTK points
     vtk_points = vtk.vtkPoints()
