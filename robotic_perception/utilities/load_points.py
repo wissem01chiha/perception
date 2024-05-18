@@ -5,7 +5,8 @@ def load_points(file_path):
     Load points from a file.
 
     Args:
-        file_path (str): The path to the file containing points.
+        file_path (str): The path to the file containing cartesian coordiantes 
+        points.
 
     Returns:
         list: A list of points loaded from the file. Each point is represented
@@ -15,9 +16,6 @@ def load_points(file_path):
         FileNotFoundError: If the specified file_path does not exist.
         ValueError: If the file is not in a supported format or has invalid content.
 
-    Example:
-        >>> load_points('points.csv')
-        [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]]
     """
     points = []
     try:
