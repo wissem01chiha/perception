@@ -1,48 +1,129 @@
 <div align="center">
 
-## Robotic Perception Algorithms Library  
-
-A Python Implmentation of General use Perception Algorithms 
-
-[![Build Status](https://github.com/Justintime50/python-template/workflows/build/badge.svg)](https://github.com/Justintime50/python-template/actions)
-[![Coverage Status](https://coveralls.io/repos/github/Justintime50/python-template/badge.svg?branch=main)](https://coveralls.io/github/Justintime50/python-template?branch=main)
-[![Licence](https://img.shields.io/github/license/justintime50/python-template)](LICENSE)
+## Robotic Perception Library
+A fully templated C++ implementation of general-use algorithms for robotic perception and visual servoing.
 
 
+
+![C++](https://img.shields.io/badge/C%2B%2B-11%2F14%2F17%2F20%2F23-blue)
+![License](https://img.shields.io/github/license/franneck94/CppProjectTemplate)
+![Linux Build](https://github.com/franneck94/CppProjectTemplate/workflows/Ubuntu%20CI%20Test/badge.svg)
 
 </div>
 
-Python projects take a long time to setup with all the various files, the virtual environment, and keeping things uniform across projects. With this Python template, you can quickly setup boilerplate code and miscellaneous items for your Python project saving you time and energy so you can get back to coding.
+---
 
-### Install
+### Goals
+ RPL project has the following goals:
+ *  Provide optimized and flexible modules for collision prediction and detection  for collaborative robotic applications.
+ * Feature extraction from camera images and/or sensors data types. 
+ * Environment reconstruction and processing, trajectory planning in unconstrained worlds. 
+ * Robust control strategies based on visual input.
+ * A set of fuzzy relations between solid objects, and develops, and a set of human-like control algorithms. 
 
-Click the [Use this template](https://github.com/Justintime50/python-template/generate) button at the top of this project's GitHub page to get started.
+---
+ 
+ 
+This is a template for modern C++ projects.
+What you get is:
 
-### Usage
+- Library, executable and test code separated in distinct folders
+- Use of modern CMake for building and compiling
+- External libraries installed and managed by
+  - [CPM](https://github.com/cpm-cmake/CPM.cmake) Package Manager **OR**
+  - [Conan](https://conan.io/) Package Manager **OR**
+  - [VCPKG](https://github.com/microsoft/vcpkg) Package Manager
+- Unit testing using [Catch2](https://github.com/catchorg/Catch2) v2
+- General purpose libraries: [JSON](https://github.com/nlohmann/json), [spdlog](https://github.com/gabime/spdlog), [cxxopts](https://github.com/jarro2783/cxxopts) and [fmt](https://github.com/fmtlib/fmt)
+- Continuous integration testing with Github Actions and [pre-commit](https://pre-commit.com/)
+- Code documentation with [Doxygen](https://doxygen.nl/) and [Github Pages](https://franneck94.github.io/CppProjectTemplate/)
+- Tooling: Clang-Format, Cmake-Format, Clang-tidy, Sanitizers
 
-#### Easy text replacements
+## Structure
 
-1. Replace all instances of `project_name` with the name of your project
-    * These are the Python snake_case references (eg: `project_name`)
-1. Replace all instances of `PROJECT_NAME_URL` with the name of your project
-    * These are the references to your project that will appear in URLs and are typically hyphenated (eg: `project-name`)
-1. Replace all instances of `USERNAME` with the name of the author or owner of the project
-    * These are references typically found in the URL of your project as it appears on GitHub
+``` text
+├── CMakeLists.txt
+├── app
+│   ├── CMakesLists.txt
+│   └── main.cc
+├── cmake
+│   └── cmake modules
+├── docs
+│   ├── Doxyfile
+│   └── html/
+├── external
+│   ├── CMakesLists.txt
+│   ├── ...
+├── src
+│   ├── CMakesLists.txt
+│   ├── foo/...
+│   └── bar/...
+└── tests
+    ├── CMakeLists.txt
+    └── test_*.cc
+```
 
-#### File configuration
+Library code goes into [src/](src/), main program code in [app/](app) and tests go in [tests/](tests/).
 
-1. Configure the `setup.py` file
-1. Configure the `justfile` targets
-1. Update the name in the `LICENSE` or swap it out entirely
-1. Configure the `.github/workflows/build.yml` file
-1. Update the `CHANGELOG.md` with your own info
-1. Rename other files/folders as needed and configure their content
-1. Delete this `README` and rename `README_project.md` to `README.md`
+## Software Requirements
 
-#### GitHub configuration
+- CMake 3.21+
+- GNU Makefile
+- Doxygen
+- Conan or VCPKG
+- MSVC 2017 (or higher), G++9 (or higher), Clang++9 (or higher)
+- Optional: Code Coverage (only on GNU|Clang): gcovr
+- Optional: Makefile, Doxygen, Conan, VCPKG
 
-1. Add a `PYPI_API_TOKEN` GitHub secret to your project so that automated releasing can occur from GitHub Actions to PyPI and uncomment the final step on the `release` job in `.github/workflows/release.yml`
+## Building
 
-### Attribution
+First, clone this repo and do the preliminary work:
 
-* Watch [the video](https://youtu.be/ZMfcl3CnRhA) where I built this template.
+```shell
+git clone --recursive https://github.com/franneck94/CppProjectTemplate
+mkdir build
+```
+
+- App Executable
+
+```shell
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build . --config Release --target main
+cd app
+./main
+```
+
+- Unit testing
+
+```shell
+cmake -H. -Bbuild -DCMAKE_BUILD_TYPE="Debug"
+cmake --build build --config Debug
+cd build
+ctest .
+```
+
+- Documentation
+
+```shell
+cd build
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+cmake --build . --config Debug --target docs
+```
+
+- Code Coverage (Unix only)
+
+```shell
+cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=On
+cmake --build build --config Debug --target coverage -j4
+cd build
+ctest .
+```
+
+For more info about CMake see [here](./README_cmake.md).
+### testing
+ 
+### References
+
+### Contributing
+please see the [CONTRIBUTING](CONTRIBUTING.md) guide for more informations 
