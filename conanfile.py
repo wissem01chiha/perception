@@ -7,13 +7,12 @@ class CompressorRecipe(ConanFile):
     generators = "CMakeDeps"
 
     def requirements(self):
-        self.requires("nlohmann_json/3.11.3")
-        self.requires("fmt/10.0.0")
-        self.requires("spdlog/1.13.0")
-        self.requires("catch2/3.5.3")
-        self.requires("cxxopts/3.1.1")
+        self.requires("fmt/10.2.1")
+        self.requires("gtest/1.14.0")
+        self.requires("cxxopts/3.2.0")
 
     def generate(self):
         tc = CMakeToolchain(self)
         tc.user_presets_path = False
         tc.generate()
+        
