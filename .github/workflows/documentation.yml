@@ -32,3 +32,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         build_dir: ./docs/html
+        email: chihawissem08@gmail.com

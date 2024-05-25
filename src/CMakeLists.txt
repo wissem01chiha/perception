@@ -1,2 +1,6 @@
 add_subdirectory(calibration)
 add_subdirectory(stereo)
+add_subdirectory(transform)
+add_subdirectory(motion)
+add_subdirectory(math)
+add_subdirectory(utilities)

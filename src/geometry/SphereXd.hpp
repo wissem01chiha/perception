@@ -2,12 +2,14 @@
 #include <iostream>
 #include <cmath>
 #include <Eigen/Dense>
+#include "PointXd.hpp"
 using namespace Eigen;
 
 namespace geometry
 {
 
-struct SphereXd
+template<typename T>
+struct Sphere2d
 {
     
 };

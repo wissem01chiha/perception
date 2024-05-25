@@ -7,7 +7,6 @@ using namespace Eigen;
 namespace geometry
 {
     
-
 template<typename T>
 struct Point3d
 {
