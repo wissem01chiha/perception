@@ -5,6 +5,7 @@
 #include "PointXd.hpp"
 using namespace Eigen;
 
+
 namespace geometry
 {
 
@@ -21,8 +22,17 @@ struct Box2d
     Matrix<T, 2, 4> toEigenMatrix() const {
 
     }
-
+    
     // 
+    rotation(){
+
+    }
+
+    // check if the box represent a rectagle
+    bool is_rectangular(){
+
+    }
+
 };
 
     

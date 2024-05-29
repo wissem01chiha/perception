@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <Eigen/Dense>
+
 using namespace Eigen;
 
 namespace geometry
@@ -17,7 +18,7 @@ struct Point3d
 
     // return the point as an Eigen vector
     Matrix<T, 3, 1> toEigenVector() const{
-        return Eigen::Vector3d(x, y, z);
+        return Vector3d(x, y, z);
     }
 
     // create a Point3d from an Eigen vector

@@ -39,31 +39,15 @@ What you get is:
 - Code documentation with [Doxygen](https://doxygen.nl/) and [Github Pages](https://franneck94.github.io/CppProjectTemplate/)
 - Tooling: Clang-Format, Cmake-Format, Clang-tidy, Sanitizers
 
-## Structure
+## References
 
-``` text
-├── CMakeLists.txt
-├── app
-│   ├── CMakesLists.txt
-│   └── main.cc
-├── cmake
-│   └── cmake modules
-├── docs
-│   ├── Doxyfile
-│   └── html/
-├── external
-│   ├── CMakesLists.txt
-│   ├── ...
-├── src
-│   ├── CMakesLists.txt
-│   ├── foo/...
-│   └── bar/...
-└── tests
-    ├── CMakeLists.txt
-    └── test_*.cc
-```
+- **Real-Time Deep Learning Approach to Visual Servo Control and Grasp Detection for Autonomous Robotic Manipulation**, *E. G. Ribeiro, R. Q. Mendes, V. Grassi Jr*, Elsevier's Robotics and Autonomous Systems, 2021
 
+- **Training deep neuralnetworks for visual servoing**, *Q. Bateux, E. Marchand, J. Leitner, F. Chaumette, P. Corke*, ICRA 2018
 Library code goes into [src/](src/), main program code in [app/](app) and tests go in [tests/](tests/).
+
+- **Classical and Deep Learning based Visual Servoing Systems:
+a Survey on State of the Art**, * Z.Machkour, D.Ortiz-Arroyo, P.Durdevic*, 2021
 
 ## Software Requirements
 

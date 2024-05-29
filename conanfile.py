@@ -7,6 +7,7 @@ class CompressorRecipe(ConanFile):
     generators = "CMakeDeps"
 
     def requirements(self):
+        self.requires("opencv/4.9.0")
         self.requires("fmt/10.2.1")
         self.requires("gtest/1.14.0")
         self.requires("cxxopts/3.2.0")
