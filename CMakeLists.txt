@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 project(
-    "CppTemplate"
+    "RPL"
     VERSION 1.0.0
     LANGUAGES C CXX)
 
@@ -19,7 +19,7 @@ option(USE_CPM "Whether to use CPM." OFF)
 option(ENABLE_WARNINGS "Enable to add warnings to a target." ON)
 option(ENABLE_WARNINGS_AS_ERRORS "Enable to treat warnings as errors." OFF)
 
-option(ENABLE_TESTING "Enable a Unit Testing build." ON)
+option(ENABLE_TESTING "Enable a Unit Testing build." OFF)
 option(ENABLE_COVERAGE "Enable a Code Coverage build." OFF)
 
 option(ENABLE_CLANG_TIDY "Enable to add clang tidy." OFF)
@@ -90,10 +90,10 @@ elseif(USE_CONAN OR USE_VCPKG)
         include(
             ${CMAKE_SOURCE_DIR}/external/vcpkg/scripts/buildsystems/vcpkg.cmake)
     endif()
-    find_package(nlohmann_json REQUIRED)
-    find_package(fmt REQUIRED)
-    find_package(spdlog REQUIRED)
-    find_package(cxxopts REQUIRED)
+
+    
+    find_package(OpenCV REQUIRED)
+    find_package(OpenCV CONFIG REQUIRED)
     if(ENABLE_TESTING)
         find_package(Catch2 REQUIRED)
         list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras)
@@ -139,25 +139,29 @@ else()
     endif()
 endif()
 
-add_subdirectory(configured)
-add_subdirectory(external)
 add_subdirectory(src)
-add_subdirectory(app)
 if(ENABLE_TESTING)
     include(CTest)
     enable_testing()
     add_subdirectory(tests)
 endif()
+set(OpenCV_LIBS "C:/Users/chiha/.conan2/p/openc9aa8492a24575/p/lib/opencv_core490.lib")
+add_executable(viz  src/visualization/visualization.cpp)
+include_directories(viz ${OpenCV_INCLUDE_DIRS} )
+target_link_libraries(viz ${OpenCV_LIBS})
+
+  MESSAGE(STATUS "Include dirs ${OpenCV_INCLUDE_DIRS}")
+  MESSAGE(STATUS "LINK LIBRARIES ${OpenCV_LIBS}")
 
 # INSTALL TARGETS
 
-install(
-    TARGETS ${EXECUTABLE_NAME}
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin)
+#install(
+ #   TARGETS viz
+  #  ARCHIVE DESTINATION lib
+   # LIBRARY DESTINATION lib
+    #RUNTIME DESTINATION bin)
 
-install(
-    TARGETS 
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib)
+#install(
+ #  TARGETS 
+  #  ARCHIVE DESTINATION lib
+   # LIBRARY DESTINATION lib)

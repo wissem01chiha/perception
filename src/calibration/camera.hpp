@@ -1,34 +1,56 @@
 #pragma once
 #include<cmath>
 #include <Eigen/Dense>
+#include "../geometry/Point.hpp"
+
 using namespace Eigen;
  
 namespace calibration
 {
 
-template<typename T>
+//
+template<class Precision = double , size_t Resolution, size_t fps>
 class Camera
 {
-private:
-    Matrix<T, 3, 3> R;
-    Matrix<T, 3, 1>   T;
-    T     aspectRatio; // sy/sx 
-    T k1; // radial distoration coefficent
-    T fx; // length in effective horizontal pixel size, focal length  
-    T ox, oy ; // image center coordiantes 
-
 public:
 
-    // Constructor 
-    Camera(/* args */);
-
-    ~Camera();
-};
+    // Default Constructor 
+    Camera();
 
 
+    // given a point in world frame  computes its coordianates in image frame x y
+    Point2<Precision> world2image(const Point3<Precision>& pt3){
+
+    };
+
+    // estimate the camera intrins paramters R and T from N sampled image points
+    // (xi, yi) in the image frame and their correspending (Xi, Yi, Zi ) in the world frame
+
+
+    // get the camera aspec ratio
+    Precision aspectRatio(){
+        return aspectRatio;
+    }
+
+
+private:
+
+    // camera intrinsp paramters 
+    Matrix<Precision, 3, 3>   R;
+    Matrix<Precision, 3, 1>   T;
+    Precision                 aspectRatio; // sy/sx 
+    Precision                 k1; // radial distoration coefficent
+    Precision                 fx; // length in effective horizontal pixel size, focal length  
+    geometry::Point2<Precision> center ; // image center coordiantes 
 
 
 
+
+
+
+
+
+}; // class Camera 
 } // namespace calibration
     
     
@@ -41,16 +63,3 @@ public:
 
 
 
-
-
-template <typename T>
-inline calibration::Camera<T>::Camera()
-{
-}
-
-
-
-template <typename T>
-inline calibration::Camera<T>::~Camera()
-{
-}

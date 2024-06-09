@@ -1,5 +1,6 @@
 #pragma once 
-#include "LineXd.hpp"
-#include "PointXd.hpp"
-#include "SphereXd.hpp"
-#include "BoxXd.hpp"
+#include "Line.hpp"
+#include "Point.hpp"
+#include "SE3.hpp"
+#include "SO3.hpp"
+#include "SIM3.hpp"

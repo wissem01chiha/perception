@@ -39,15 +39,6 @@ What you get is:
 - Code documentation with [Doxygen](https://doxygen.nl/) and [Github Pages](https://franneck94.github.io/CppProjectTemplate/)
 - Tooling: Clang-Format, Cmake-Format, Clang-tidy, Sanitizers
 
-## References
-
-- **Real-Time Deep Learning Approach to Visual Servo Control and Grasp Detection for Autonomous Robotic Manipulation**, *E. G. Ribeiro, R. Q. Mendes, V. Grassi Jr*, Elsevier's Robotics and Autonomous Systems, 2021
-
-- **Training deep neuralnetworks for visual servoing**, *Q. Bateux, E. Marchand, J. Leitner, F. Chaumette, P. Corke*, ICRA 2018
-Library code goes into [src/](src/), main program code in [app/](app) and tests go in [tests/](tests/).
-
-- **Classical and Deep Learning based Visual Servoing Systems:
-a Survey on State of the Art**, * Z.Machkour, D.Ortiz-Arroyo, P.Durdevic*, 2021
 
 ## Software Requirements
 
@@ -106,8 +97,26 @@ ctest .
 
 For more info about CMake see [here](./README_cmake.md).
 ### Testing
- 
-### References
+
+### Datasets
+
+- **[Visual Servoing Dataset](#https://github.com/RauldeQueirozMendes/VSDataset/tree/main)**, *E. G. Ribeiro, R. Q. Mendes and V. Grassi Jr*  
+
+
+###  References
+
+- **Real-Time Deep Learning Approach to Visual Servo Control and Grasp Detection for Autonomous Robotic Manipulation**, *E. G. Ribeiro, R. Q. Mendes, V. Grassi Jr*, Elsevier's Robotics and Autonomous Systems, 2021
+*Robotics and Autonomous Systems*, Elsevier, 2021. DOI: [10.1016/j.robot.2021.103757](https://doi.org/10.1016/j.robot.2021.103757) 
+
+- **Training deep neuralnetworks for visual servoing**, *Q. Bateux, E. Marchand, J. Leitner, F. Chaumette, P. Corke*, ICRA 2018
+
+- **Classical and Deep Learning based Visual Servoing Systems: a Survey on State of the Art**, *Z.Machkour, D.Ortiz-Arroyo, P.Durdevic*, 2021
+
+- **Introductory Techniques for 3-D Computer Vision**, *Emanuele Trucco, Alessandro Verri*, 1998
+
+- **Three-dimensional computer vision a geometric viewpoint**, *Olivier Faugeras*, 1993
+
+-**Robot Vision**,*Berthold K.P. Horn*, 1987
 
 ### Contributing
 please see the [CONTRIBUTING](CONTRIBUTING.md) guide for more informations 
