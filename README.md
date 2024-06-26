@@ -112,11 +112,11 @@ For more info about CMake see [here](./README_cmake.md).
 
 - **Classical and Deep Learning based Visual Servoing Systems: a Survey on State of the Art**, *Z.Machkour, D.Ortiz-Arroyo, P.Durdevic*, 2021
 
-- **Introductory Techniques for 3-D Computer Vision**, *Emanuele Trucco, Alessandro Verri*, 1998
+- **[Introductory Techniques for 3-D Computer Vision](https://archive.org/details/introductorytech0000truc/page/n375/mode/2up)**, *Emanuele Trucco, Alessandro Verri*, 1998
 
-- **Three-dimensional computer vision a geometric viewpoint**, *Olivier Faugeras*, 1993
+- **[Three-dimensional computer vision a geometric viewpoint](https://archive.org/details/threedimensional0000faug)**, *Olivier Faugeras*, 1993
 
--**Robot Vision**,*Berthold K.P. Horn*, 1987
+- **[Robot Vision](https://archive.org/details/robotvision0000horn)**, *Berthold K.P. Horn*, 1987
 
 ### Contributing
-please see the [CONTRIBUTING](CONTRIBUTING.md) guide for more informations 
+see the [CONTRIBUTING](CONTRIBUTING.md) guide.
