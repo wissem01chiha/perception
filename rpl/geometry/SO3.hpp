@@ -7,6 +7,8 @@
 
 using namespace Eigen;
 
+namespace rpl
+{ 
 namespace geometry { 
 
 // Special orthogonal group SO(3) - rotation in 3d.
@@ -92,15 +94,21 @@ public:
 
     // check is a given elment as matrix form within the SO3 group 
     bool isSO3(const Matrix<Precision,3,3> mat){
-
+        // Check orthogonality: mat * mat^T should be approximately equal to the identity matrix
+        Matrix<Precision, 3, 3> identity = Matrix<Precision, 3, 3>::Identity();
+        bool isOrthogonal = mat * mat.transpose() - identity.norm() < 1e-6;
+        Precision det = mat.determinant();
+        bool hasUnitDeterminant = std::abs(det - 1.0) < 1e-6;
+        return isOrthogonal && hasUnitDeterminant;
     }
 
-
-
-
-    // if so retun the corresponedin elment
+    // if so retun the corresponeding element
     SO3 fromMatrix(const Matrix<Precision,3,3> mat){
+        if isSO3(mat){
+            
+        }else{
 
+        }
 
     }
 
@@ -126,4 +134,5 @@ typedef SO3<float>   SO3f;
 typedef SO3<int>     SO3i;
 typedef SO3<int32_t> SO3i32;
 
-}; // namespace geometry 
+    }; // namespace geometry 
+}; // namespace rpl

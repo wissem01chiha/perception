@@ -4,7 +4,9 @@
 #include "../geometry/Point.hpp"
 
 using namespace Eigen;
- 
+
+namespace rpl
+{ 
 namespace calibration
 {
 
@@ -37,11 +39,11 @@ public:
 private:
 
     // camera intrinsp paramters 
-    Matrix<Precision, 3, 3>   R;
-    Matrix<Precision, 3, 1>   T;
-    Precision                 aspectRatio; // sy/sx 
-    Precision                 k1; // radial distoration coefficent
-    Precision                 fx; // length in effective horizontal pixel size, focal length  
+    Matrix<Precision, 3, 3> R;
+    Matrix<Precision, 3, 1> T;
+    Precision aspectRatio; // sy/sx 
+    Precision k1; // radial distoration coefficent
+    Precision fx; // length in effective horizontal pixel size, focal length  
     geometry::Point2<Precision> center ; // image center coordiantes 
 
 
@@ -51,10 +53,9 @@ private:
 
 
 
-}; // class Camera 
-} // namespace calibration
-    
-    
+        }; // class Camera 
+    }; // namespace calibration
+}; // namespace rpl 
  
 
  
