@@ -1,20 +1,14 @@
 #pragma once
 #include <cmath>
 #include <limits>
-#include <random>
+
 #include <Eigen/Dense>
-#include <Point.hpp>
 
 using namespace Eigen;
-
-namespace rpl
-{ 
-namespace geometry { 
 
 // Special orthogonal group SO(3) - rotation in 3d.
 // SO(3) is the group of rotations in 3d.
 // by default an elment of SO3 is reprsented as quternion 
-//
 template <class Precision= double>
 class SO3
 {
@@ -102,14 +96,51 @@ public:
         return isOrthogonal && hasUnitDeterminant;
     }
 
-    // if so retun the corresponeding element
-    SO3 fromMatrix(const Matrix<Precision,3,3> mat){
-        if isSO3(mat){
-            
-        }else{
-
+    SO3 fromMatrix(const Matrix<Precision, 3, 3>& mat) const
+    {
+        // Check if the input matrix is a valid rotation matrix in SO(3)
+        if (!isSO3(mat))
+        {
+        // Handle the case where the matrix is not a valid rotation matrix
+        // You can choose to throw an exception, return an identity SO3, or do something else
+            throw std::invalid_argument("Input matrix is not a valid rotation matrix in SO(3).");
         }
-
+        // Extract quaternion elements from the rotation matrix
+        Precision tr = mat.trace();
+        Precision S;
+        if (tr > 0) {
+            S = sqrt(tr + 1.0) * 2.0;
+            return SO3(
+                (mat(2, 1) - mat(1, 2)) / S,
+                (mat(0, 2) - mat(2, 0)) / S,
+                (mat(1, 0) - mat(0, 1)) / S,
+                0.25 * S
+            );
+        } else if ((mat(0, 0) > mat(1, 1)) && (mat(0, 0) > mat(2, 2))) {
+            S = sqrt(1.0 + mat(0, 0) - mat(1, 1) - mat(2, 2)) * 2.0;
+            return SO3(
+                0.25 * S,
+                (mat(0, 1) + mat(1, 0)) / S,
+                (mat(0, 2) + mat(2, 0)) / S,
+                (mat(2, 1) - mat(1, 2)) / S
+            );
+        } else if (mat(1, 1) > mat(2, 2)) {
+            S = sqrt(1.0 + mat(1, 1) - mat(0, 0) - mat(2, 2)) * 2.0;
+            return SO3(
+                (mat(0, 1) + mat(1, 0)) / S,
+                0.25 * S,
+                (mat(1, 2) + mat(2, 1)) / S,
+                (mat(0, 2) - mat(2, 0)) / S
+            );
+        } else {
+            S = sqrt(1.0 + mat(2, 2) - mat(0, 0) - mat(1, 1)) * 2.0;
+            return SO3(
+                (mat(0, 2) + mat(2, 0)) / S,
+                (mat(1, 2) + mat(2, 1)) / S,
+                0.25 * S,
+                (mat(1, 0) - mat(0, 1)) / S
+            );
+        }
     }
 
     // normlize 
@@ -133,6 +164,4 @@ typedef SO3<double>  SO3d;
 typedef SO3<float>   SO3f;
 typedef SO3<int>     SO3i;
 typedef SO3<int32_t> SO3i32;
-
-    }; // namespace geometry 
-}; // namespace rpl
+typedef SO3<int64_t> SO3i64;

@@ -1,25 +1,19 @@
 #pragma once
 #include<cmath>
+
 #include <Eigen/Dense>
-#include "../geometry/Point.hpp"
+#include "../geometry/point.h"
 
 using namespace Eigen;
-
-namespace rpl
-{ 
-namespace calibration
-{
 
 // base class for modeling the carmera and calbiration function utils
 // 
 template<class Precision = double , size_t Resolution, size_t fps>
-class Camera
-{
-public:
+class Camera{
+    public:
 
     // Default Constructor 
     Camera();
-
 
     // given a point in world frame  computes its coordianates in image frame x y
     Point2<Precision> world2image(const Point3<Precision>& pt3){
@@ -31,31 +25,23 @@ public:
 
 
     // get the camera aspec ratio
-    Precision aspectRatio(){
+    Precision getAspectRatio(){
         return aspectRatio;
     }
 
-
 private:
-
     // camera intrinsp paramters 
     Matrix<Precision, 3, 3> R;
     Matrix<Precision, 3, 1> T;
     Precision aspectRatio; // sy/sx 
     Precision k1; // radial distoration coefficent
     Precision fx; // length in effective horizontal pixel size, focal length  
-    geometry::Point2<Precision> center ; // image center coordiantes 
+    Point2<Precision> center ; // image center coordiantes 
 
+    bool validateInput(){
 
-
-
-
-
-
-
-        }; // class Camera 
-    }; // namespace calibration
-}; // namespace rpl 
+    };
+}; // class Camera 
  
 
  
