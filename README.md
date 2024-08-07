@@ -106,17 +106,17 @@ For more info about CMake see [here](./README_cmake.md).
 ###  References
 
 - **Real-Time Deep Learning Approach to Visual Servo Control and Grasp Detection for Autonomous Robotic Manipulation**, *E. G. Ribeiro, R. Q. Mendes, V. Grassi Jr*, Elsevier's Robotics and Autonomous Systems, 2021
-*Robotics and Autonomous Systems*, Elsevier, 2021. DOI: [10.1016/j.robot.2021.103757](https://doi.org/10.1016/j.robot.2021.103757) 
+*Robotics and Autonomous Systems*, Elsevier, 2021.
 
 - **Training deep neuralnetworks for visual servoing**, *Q. Bateux, E. Marchand, J. Leitner, F. Chaumette, P. Corke*, ICRA 2018
 
 - **Classical and Deep Learning based Visual Servoing Systems: a Survey on State of the Art**, *Z.Machkour, D.Ortiz-Arroyo, P.Durdevic*, 2021
 
-- **[Introductory Techniques for 3-D Computer Vision](https://archive.org/details/introductorytech0000truc/page/n375/mode/2up)**, *Emanuele Trucco, Alessandro Verri*, 1998
+- **Introductory Techniques for 3-D Computer Vision**, *Emanuele Trucco, Alessandro Verri*, 1998
 
-- **[Three-dimensional computer vision a geometric viewpoint](https://archive.org/details/threedimensional0000faug)**, *Olivier Faugeras*, 1993
+- **Three-dimensional computer vision a geometric viewpoint**, *Olivier Faugeras*, 1993
 
-- **[Robot Vision](https://archive.org/details/robotvision0000horn)**, *Berthold K.P. Horn*, 1987
+- **Robot Vision**, *Berthold K.P. Horn*, 1987
 
 ### Contributing
 see the [CONTRIBUTING](CONTRIBUTING.md) guide.
