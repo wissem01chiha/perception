@@ -1,6 +1,9 @@
+// "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\VsDevCmd.bat"
+// cl /EHsc main.cpp 
+//
 #define STB_IMAGE_IMPLEMENTATION
 #include <iostream>
-#include "../../external/stb/stb_image.h"
+#include "../RPL/ThirdParty/stb/stb_image.h"
 
 int main() {
     int width, height, channels;

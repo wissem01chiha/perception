@@ -2,7 +2,7 @@
 #include<cmath>
 
 #include <Eigen/Dense>
-#include "../geometry/point.hpp"
+#include "../shape3d/point.hpp"
 
 using namespace Eigen;
 
