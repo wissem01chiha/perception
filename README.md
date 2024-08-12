@@ -1,12 +1,7 @@
- 
-
-### Robotic Perception Library
+#### Robotic Perception Library
 A templated C++ implementation of robotic perception and visual servoing algorithms.
 
-</div>
----
-
-### Requirements
+####  Requirements
 The project relay on many external denadancy some of thelm are manged with populer packages manger like:
   - [CPM](https://github.com/cpm-cmake/CPM.cmake) 
   - [Conan](https://conan.io/) Package Manager 
