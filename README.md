@@ -4,7 +4,7 @@
 A templated C++ implementation of robotic perception and visual servoing algorithms.
 
 </div>
----
+
 
 ### Requirements
 The project relay on many external denadancy some of thelm are manged with populer packages manger like:
