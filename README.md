@@ -1,4 +1,4 @@
-#### Robotic Perception Library
+### Robotic Perception Library
 A templated C++ implementation of robotic perception and visual servoing algorithms.
 
 ####  Requirements
