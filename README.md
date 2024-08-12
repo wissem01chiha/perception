@@ -1,12 +1,9 @@
-<div align="center">
+ 
 
-## Robotic Perception Library
+### Robotic Perception Library
 A templated C++ implementation of robotic perception and visual servoing algorithms.
-
-</div>
----
-
-### Requirements
+ 
+#### Requirements
 The project relay on many external denadancy some of thelm are manged with populer packages manger like:
   - [CPM](https://github.com/cpm-cmake/CPM.cmake) 
   - [Conan](https://conan.io/) Package Manager 
@@ -17,7 +14,7 @@ and other small size header only libs are housed along the sources
 - General purpose libraries: [JSON](https://github.com/nlohmann/json), [spdlog](https://github.com/gabime/spdlog), [cxxopts](https://github.com/jarro2783/cxxopts) and [fmt](https://github.com/fmtlib/fmt)
  
 
-## Software Requirements
+#### Software Requirements
 
 - CMake 3.21+
 - MSVC 2017 (or higher)
@@ -25,7 +22,7 @@ and other small size header only libs are housed along the sources
 
 - Optional: Makefile, Doxygen, Conan or VCPKG
 
-## Build Exemples
+#### Build Exemples
 
 First, clone this repository :
 
@@ -69,7 +66,7 @@ ctest .
 
 For more info about CMake see [here](./README_cmake.md).
 
-### Build Tests
+#### Build Tests
 the official test framwork used is Catch2  [Catch2](https://github.com/catchorg/Catch2) 
 Building test :
 warning : if VTK is complied for Debug model we recommned compiling tests and exemples into debug mode
@@ -80,11 +77,11 @@ cmake ../Testing  -DCMAKE_BUILD_TYPE=Release
 cmake --build . --config Release
 ```
 
-### Datasets
+#### Datasets
 
 - **Visual Servoing Dataset**, *E. G. Ribeiro, R. Q. Mendes and V. Grassi Jr* 
 
-###  References
+####  References
 - **Real-Time Deep Learning Approach to Visual Servo Control and Grasp Detection for Autonomous Robotic Manipulation**, *E. G. Ribeiro, R. Q. Mendes, V. Grassi Jr*, Elsevier's Robotics and Autonomous Systems, 2021
 *Robotics and Autonomous Systems*, Elsevier, 2021.
 - **Training deep neuralnetworks for visual servoing**, *Q. Bateux, E. Marchand, J. Leitner, F. Chaumette, P. Corke*, ICRA 2018
@@ -93,5 +90,5 @@ cmake --build . --config Release
 - **Three-dimensional computer vision a geometric viewpoint**, *Olivier Faugeras*, 1993
 - **Robot Vision**, *Berthold K.P. Horn*, 1987
 
-### Contributing
+#### Contributing
 see the [CHANGELOGS](CONTRIBUTING.md) guide.
