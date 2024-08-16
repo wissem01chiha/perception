@@ -2,11 +2,11 @@
 #include<cmath>
 
 #include <Eigen/Dense>
-#include "../shape3d/point.hpp"
+#include "../Shape3D/Point.hpp"
 
 using namespace Eigen;
 
-namespace rpl {
+namespace ptk {
 // base class for modeling the carmera and calbiration function utils
 // this is camera class used as a ref to all carmera modesl as interface 
 // ref: https://ftp.cs.toronto.edu/pub/psala/VM/camera-parameters.pdf

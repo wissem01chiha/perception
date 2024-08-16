@@ -6,7 +6,7 @@
 
 using namespace Eigen;
 
-namespace rpl
+namespace ptk
 {
 
 };
