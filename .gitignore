@@ -58,9 +58,9 @@ PTK/ThirdParty/
 ################################
 ########### VS CODE ############
 ################################
-.vscode/
-.vscode/settings.json
-.vscode/c_cpp_properties.json
+#.vscode/
+#.vscode/settings.json
+#.vscode/c_cpp_properties.json
 *.code-workspace
 .history
 

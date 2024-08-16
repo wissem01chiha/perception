@@ -1,0 +1,12 @@
+{
+    "C_Cpp.default.compilerPath": "cl.exe",
+    "files.associations": {
+        "*.cpp": "cpp",
+        "*.hpp": "cpp",
+        "stdexcept": "cpp",
+        "complex": "cpp",
+        "cmath": "cpp",
+        "core": "cpp",
+        "iostream": "cpp"
+    }
+}
