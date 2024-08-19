@@ -6,15 +6,13 @@
 
 #include "ShapeBase.hpp"
 
-namespace ptk {
-
-template<typename T>
-class Triangle
+class AlignedBoxes
 {
+private:
+    
 public:
-    Triangle();
-
-private:   
-
+    AlignedBoxes();
+    ~AlignedBoxes();
 };
-} // namespace ptk
+
+ 

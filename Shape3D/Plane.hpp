@@ -5,9 +5,10 @@
 #include <glm/gtc/random.hpp>
 #include <glm/gtc/constants.hpp>
 
+#include "ShapeBase.hpp"
 
 namespace ptk {
-
+    
 template<typename T >
 class Plane
 {

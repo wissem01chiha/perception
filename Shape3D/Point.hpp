@@ -157,7 +157,6 @@ struct Point2 {
         return glm::dot(data, other.data);
     }
 };
-
 typedef Point2<double> Point2d;
 typedef Point2<float>  Point2f;
 typedef Point3<double> Point3d;

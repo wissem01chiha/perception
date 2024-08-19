@@ -4,7 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/ThirdParty/**",
+                "C:/Users/chiha/.conan2/p/**",
                 "C:/Program Files/VTK-9.3.1/**"
             ],
             "cppStandard": "c++17",

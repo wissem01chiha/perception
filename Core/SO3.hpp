@@ -1,4 +1,5 @@
 #pragma once
+
 #define PTK_DEVICE_FUN __host__ __device__
 
 #include <cmath>

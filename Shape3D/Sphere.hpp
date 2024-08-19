@@ -1,5 +1,4 @@
 #pragma once
-#define PTK_DEVICE_FUN __host__ __device__
 
 #include <cmath>
 #include <complex>
@@ -9,6 +8,8 @@
 #include <glm/gtc/random.hpp>
 #include <glm/gtc/constants.hpp>
 
+#include "ShapeBase.hpp"
+
 #include "Point.hpp"
 #include "Box.hpp"
 
@@ -17,27 +18,27 @@ namespace ptk {
 template<typename T>
 class Sphere {
 public:
-
     /** @brief Default constructor */
-    Sphere():radius(0), center(Point3<T>(0, 0, 0)) {} 
+    Sphere():radius(0), center(Point3<T>(0, 0, 0)){}
 
+    /** @brief Construct at orign with radius */
     Sphere(T radius_):radius(radius_), center(Point3<T>(0, 0, 0)) {}
 
-    SSphere(T radius_, const Point3<T>& pt):radius(radius_), center(pt) {};
+    Sphere(T radius_, const Point3<T>& pt):radius(radius_), center(pt) {};
 
     /** @brief Compute sphere volume */
-    PTK_DEVICE_FUN inline T computeVoulme(){
+    inline T computeVoulme(){
         return static_cast<T>(4.0/3.0*glm::pi<T>()*std::pow(radius,3));
     };
 
-    PTK_DEVICE_FUN inline Box2<T> computeAABB() const {
+    inline Box2<T> computeAABB() const {
         Point3<T> minPoint(center.x-radius, center.y-radius, center.z-radius);
         Point3<T> maxPoint(center.x+radius, center.y+radius, center.z+radius);
         return Box2<T>(minPoint, maxPoint);
     };
 
     /** @brief Return the union of 2 spheres */
-    PTK_DEVICE_FUN inline Sphere<T> operator+(const Sphere<T>& other){
+    inline Sphere<T> operator+(const Sphere<T>& other){
         T d = distanceTo(other.center);
         if (d + other.radius <= radius) {
             return *this; 
@@ -52,7 +53,7 @@ public:
     };
 
     /** @brief Computes the inersection volume of 2 spheres. */
-    PTK_DEVICE_FUN inline T intersectVolume(const Sphere<T>& other) const {
+    inline T intersectVolume(const Sphere<T>& other) const {
         if (!intersect(other)) {
             return static_cast<T>(0);
         }
@@ -69,13 +70,13 @@ public:
     };
 
     /** @brief Compute the distance between 2 spheres */
-    PTK_DEVICE_FUN inline T distanceTo(const Sphere<T>& other) const {
+    inline T distanceTo(const Sphere<T>& other) const {
         T dist = center.distanceTo(other.center);
         return dist;
     };
 
     /** @brief Check if 2 spheres are in intersection or not */
-    PTK_DEVICE_FUN inline bool intersect(const Sphere<T>& other) const {
+    inline bool intersect(const Sphere<T>& other) const {
         T d = distanceTo(other);
         if (d + other.radius <= radius){
             return true;
