@@ -96,4 +96,6 @@ struct SE3 {
         return Mat.template block<3, 3>(0, 0).isIdentity();
     };
 }; 
+typedef SE3<double> SE3d;
+typedef SE3<float> SE3f;
 }; // namespace ptk

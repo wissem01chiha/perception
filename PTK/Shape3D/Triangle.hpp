@@ -1,5 +1,18 @@
-#pragma once
-#include <cmath>
-#include <Eigen/Dense>
+#pragma once 
 
-using namespace Eigen;
+#include <glm/glm.hpp>
+#include <glm/gtc/random.hpp>
+#include <glm/gtc/constants.hpp>
+
+namespace ptk {
+
+template<typename T>
+class Triangle
+{
+public:
+    Triangle();
+
+private:   
+
+};
+} // namespace ptk

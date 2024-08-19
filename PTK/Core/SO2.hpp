@@ -109,5 +109,6 @@ struct SO2 {
         return std::complex<T>(std::cos(angle), std::sin(angle));
     }
 };
-
+typedef SO2<double> SO2d;
+typedef SO2<float> SO2f;
 }; // namespace ptk

@@ -1,17 +1,20 @@
-#pragma once
-#include <cmath>
-#include <Eigen/Dense>
+#pragma once 
+#define PTK_DEVICE_FUN __host__ __device__
 
-using namespace Eigen;
+#include <glm/glm.hpp>
+#include <glm/gtc/random.hpp>
+#include <glm/gtc/constants.hpp>
 
-namespace rpl {
 
-// base class for 
-template<class Precesion = double >
+namespace ptk {
+
+template<typename T >
 class Plane
 {
 public:
+
     Plane(){};
-   
-}; // class Plane 
-}; // namespace rpl 
+
+private:  
+}; 
+}; // namespace ptk 
