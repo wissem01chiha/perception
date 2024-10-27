@@ -1,18 +1,15 @@
-cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.22.1 FATAL_ERROR)
 
-project(
-    "PTK"
-    VERSION 1.0.0
-    LANGUAGES C CXX)
+project( "3DReconstruction" VERSION 1.0.0 LANGUAGES C CXX)
 
-# Global CMake variables are set here
-set(CMAKE_CXX_STANDARD 20)
+
+
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Options
-option(USE_CONAN "Whether to use Conan." ON)
+option(USE_CONAN "Whether to use Conan." OFF)
 option(USE_VCPKG "Whether to use VCPKG." OFF)
 option(USE_CPM "Whether to use CPM." OFF)
 
@@ -35,21 +32,18 @@ option(ENABLE_CMAKE_FORMAT "Enable to add cmake-format." OFF)
 option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
 
 # Project/Library Names
-set(EXECUTABLE_NAME "main")
+# set(EXECUTABLE_NAME "main")
 
 # CMAKE MODULES
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
-include(ConfigSafeGuards)
-include(AddGitSubmodule)
-include(Docs)
-include(Tools)
+# include(ConfigSafeGuards)
+# include(AddGitSubmodule)
+# include(Docs)
+# include(Tools)
 
 if(ENABLE_WARNINGS)
-    include(Warnings)
+    # include(Warnings)
 endif()
-
-add_cmake_format_target()
-add_clang_format_target()
 
 if(ENABLE_SANITIZE_ADDR
    OR ENABLE_SANITIZE_UNDEF
@@ -65,8 +59,50 @@ if(ENABLE_TESTING AND ENABLE_COVERAGE)
 endif()
 
 if(ENABLE_LTO)
-    include(LTO)
+    # include(LTO)
 endif()
+
+#if( NOT OpenCV_TAG )
+#  set( OpenCV_TAG "4.10.0" )
+#endif()
+
+#include(ExternalProject)
+
+#ExternalProject_Add(OpenCV
+#  GIT_REPOSITORY "https://github.com/opencv/opencv.git"
+#  GIT_TAG "${OpenCV_TAG}"
+#  SOURCE_DIR opencv
+#  BINARY_DIR opencv-build
+#  CMAKE_GENERATOR ${gen}
+#  CMAKE_ARGS
+#    ${ep_common_args}
+#    -DBUILD_DOCS:BOOL=FALSE
+#    -DBUILD_EXAMPLES:BOOL=FALSE
+#    -DBUILD_TESTS:BOOL=FALSE
+#    -DBUILD_SHARED_LIBS:BOOL=TRUE
+#    -DWITH_CUDA:BOOL=FALSE
+#    -DWITH_FFMPEG:BOOL=FALSE
+#    -DBUILD_PERF_TESTS:BOOL=FALSE
+#    -DBUILD_opencv_java=OFF
+#    -DCMAKE_INSTALL_PREFIX=/usr/local 
+#)
+#set(OpenCV_DIR ${CMAKE_BINARY_DIR}/opencv-build)
+
+
+# sample commands to compile and install a test script using opencv
+find_package( OpenCV REQUIRED )
+MESSAGE(STATUS "Include dirs ${OpenCV_INCLUDE_DIRS}")
+MESSAGE(STATUS "LINK LIBRARIES ${OpenCV_LIBS}")
+
+set(EXTERNAL_INSTIALL_LOCATION ${CMAKE_BINARY_DIR}/opencv)
+include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
+link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
+add_executable(testcv4 testopencv.cpp)
+target_link_libraries(testcv4 ${OpenCV_LIBS})
+
+
+
+
 
 # EXTERNAL LIBRARIES
 
@@ -84,7 +120,7 @@ if(USE_CPM)
 elseif(USE_CONAN OR USE_VCPKG)
     if(USE_CONAN)
         message(STATUS "Using Conan")
-        include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
+        #  include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
     elseif(USE_VCPKG)
         message(STATUS "Using VCPKG")
         include(
@@ -98,14 +134,14 @@ elseif(USE_CONAN OR USE_VCPKG)
         find_package(Catch2 REQUIRED)
         list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras)
     endif()
-else()
+elseif(USE_VCPKG)
     message(STATUS "Using FetchContent")
-    FetchContent_Declare(
-        nlohmann_json
-        GIT_REPOSITORY https://github.com/nlohmann/json
-        GIT_TAG v3.11.3
-        GIT_SHALLOW TRUE)
-    FetchContent_MakeAvailable(nlohmann_json)
+    # FetchContent_Declare(
+    #    nlohmann_json
+    #    GIT_REPOSITORY https://github.com/nlohmann/json
+    #    GIT_TAG v3.11.3
+    #    GIT_SHALLOW TRUE)
+    #FetchContent_MakeAvailable(nlohmann_json)
 
     FetchContent_Declare(
         fmt
@@ -139,19 +175,14 @@ else()
     endif()
 endif()
 
-add_subdirectory(src)
+# add_subdirectory(src)
 if(ENABLE_TESTING)
     include(CTest)
     enable_testing()
     add_subdirectory(tests)
 endif()
-set(OpenCV_LIBS "C:/Users/chiha/.conan2/p/openc9aa8492a24575/p/lib/opencv_core490.lib")
-add_executable(viz  src/visualization/visualization.cpp)
-include_directories(viz ${OpenCV_INCLUDE_DIRS} )
-target_link_libraries(viz ${OpenCV_LIBS})
 
-  MESSAGE(STATUS "Include dirs ${OpenCV_INCLUDE_DIRS}")
-  MESSAGE(STATUS "LINK LIBRARIES ${OpenCV_LIBS}")
+
 
 # INSTALL TARGETS
 
