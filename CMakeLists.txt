@@ -62,31 +62,33 @@ if(ENABLE_LTO)
     # include(LTO)
 endif()
 
-#if( NOT OpenCV_TAG )
-#  set( OpenCV_TAG "4.10.0" )
-#endif()
+if( NOT OpenCV_TAG )
+  set( OpenCV_TAG "4.10.0" )
+endif()
 
-#include(ExternalProject)
+include(ExternalProject)
 
-#ExternalProject_Add(OpenCV
-#  GIT_REPOSITORY "https://github.com/opencv/opencv.git"
-#  GIT_TAG "${OpenCV_TAG}"
-#  SOURCE_DIR opencv
-#  BINARY_DIR opencv-build
-#  CMAKE_GENERATOR ${gen}
-#  CMAKE_ARGS
-#    ${ep_common_args}
-#    -DBUILD_DOCS:BOOL=FALSE
-#    -DBUILD_EXAMPLES:BOOL=FALSE
-#    -DBUILD_TESTS:BOOL=FALSE
-#    -DBUILD_SHARED_LIBS:BOOL=TRUE
-#    -DWITH_CUDA:BOOL=FALSE
-#    -DWITH_FFMPEG:BOOL=FALSE
-#    -DBUILD_PERF_TESTS:BOOL=FALSE
-#    -DBUILD_opencv_java=OFF
-#    -DCMAKE_INSTALL_PREFIX=/usr/local 
-#)
-#set(OpenCV_DIR ${CMAKE_BINARY_DIR}/opencv-build)
+ExternalProject_Add(OpenCV
+  GIT_REPOSITORY "https://github.com/opencv/opencv.git"
+  GIT_TAG "${OpenCV_TAG}"
+  SOURCE_DIR opencv
+  BINARY_DIR opencv-build
+  CMAKE_GENERATOR ${gen}
+  CMAKE_ARGS
+    ${ep_common_args}
+    -DBUILD_DOCS:BOOL=FALSE
+    -DBUILD_EXAMPLES:BOOL=FALSE
+    -DBUILD_TESTS:BOOL=FALSE
+    -DBUILD_opencv_apps:BOOL=FALSE
+    -DBUILD_SHARED_LIBS:BOOL=TRUE
+    -DWITH_CUDA:BOOL=FALSE
+    -DWITH_FFMPEG:BOOL=FALSE
+    -DBUILD_PERF_TESTS:BOOL=FALSE
+    -DBUILD_opencv_java=OFF
+    -DCMAKE_INSTALL_PREFIX=/usr/local
+    -DOPENCV_EXTRA_MODULES_PATH=./opencv_contrib/modules/xfeatures2d
+)
+set(OpenCV_DIR ${CMAKE_BINARY_DIR}/opencv-build)
 
 
 # sample commands to compile and install a test script using opencv
@@ -97,9 +99,12 @@ MESSAGE(STATUS "LINK LIBRARIES ${OpenCV_LIBS}")
 set(EXTERNAL_INSTIALL_LOCATION ${CMAKE_BINARY_DIR}/opencv)
 include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
 link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
-add_executable(testcv4 testopencv.cpp)
-target_link_libraries(testcv4 ${OpenCV_LIBS})
+#add_executable(testcv4 tests/testopencv.cpp)
 
+#-----
+#add_executable(testCLHEA tests/testnorm.cpp)
+#target_link_libraries(testcv4 ${OpenCV_LIBS})
+#target_link_libraries(testCLHEA ${OpenCV_LIBS})
 
 
 
