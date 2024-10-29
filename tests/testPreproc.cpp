@@ -1,4 +1,8 @@
-#include "../include/prepo.hpp"
+
+#include <iostream>
+#include <opencv2/highgui.hpp> 
+#include "../include/preproc.hpp"
+
 int main (){
 
   cv::Mat image = cv::imread("DSC00157.jpg");
@@ -7,6 +11,6 @@ int main (){
         return -1;
     }
 
-    normalize_light(image);
+    //normalize_light(image);
     return 0;
 }

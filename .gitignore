@@ -10,6 +10,7 @@ build/
 datasets/
 extern/Eigen
 extern/d2-net.onnx
+.vscode/
 
 ################################
 ############ C/C++ #############

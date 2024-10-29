@@ -1,43 +1,43 @@
 #pragma once
 
 #include <vector>
+#include <utility>
+#include <omp.h>
 
+#include <Eigen/Core>
+#include <Eigen/Dense>
 #include <opencv2/core.hpp>       
 #include <opencv2/imgproc.hpp> 
-#include <opencv2/xfeatures2d.hpp>
+#include <opencv2/features2d.hpp>  
 
+#include "kdtree/kdtree.hpp"
 
-// scale-invariant feature transform
-void getScaleInvariantFeatures(cv::Mat originalGrayImage){
-
-    // for older versions of opencv
-    //FeatureDetector* detector;
+std::pair<std::vector<std::vector<cv::KeyPoint>>, std::vector<cv::Mat>> 
+getScaleInvariantFeatures(const std::vector<cv::Mat>& originalGrayImages,
+                              int nfeatures =  250,
+                              int nOctaveLayers = 4,
+                              double contrastThreshold = 0.025,
+                              double edgeThreshold = 9.0,
+		                          double sigma = 1.4,
+		                          bool  enable_precise_upscale = false ){
+  
+  cv::Ptr<cv::SIFT> detector = cv::SIFT::create(
+        nfeatures, nOctaveLayers, contrastThreshold, edgeThreshold, sigma);
     
-    //detector = new SiftFeatureDetector(
-                    //                 0, // nFeatures
-                 //                    4, // nOctaveLayers
-                   //                  0.04, // contrastThreshold
-                      //               10, //edgeThreshold
-                    //                 1.6 //sigma
-                     //                );
-    // for newer hersions 
-    std::vector<cv::KeyPoint> keypoints1;
-    cv::Mat descriptors1;
+  std::vector<std::vector<cv::KeyPoint>> keypoints(originalGrayImages.size());
+  std::vector<cv::Mat> descriptors(originalGrayImages.size());
 
-    cv::Ptr<cv::xfeatures2d::SIFT> sift;
-    sift = cv::xfeatures2d::SIFT::create (0,4,0.04,10,1.6);
-
-    sift->detect(originalGrayImage, keypoints1);
-    
-    // Add results to image and save.
-    cv::Mat output;
-    cv::drawKeypoints(input, keypoints, output);
-    cv::imwrite("sift_result.jpg", output);it.
-
-
-
+  for (size_t i = 0; i < originalGrayImages.size(); ++i) {
+      detector->detect(originalGrayImages[i], keypoints[i]);
+      detector->compute(originalGrayImages[i], keypoints[i], descriptors[i]);
+  }
+  return {keypoints,descriptors};
 }
 
-//Asif alorithm : http://www.ipol.im/pub/art/2011/my-asift/
-// comprehehsive study oh sift : 
-// https://www.researchgate.net/publication/270268995_A_Comparative_Study_of_SIFT_and_its_Variants
+//compute structure invarient matching usig knn
+// between 2 or more imagaes 
+// 
+void computeSIFMatching(std::vector<std::vector<cv::KeyPoint>> keyPoints,
+                      std::vector<cv::Mat> descriptors ){
+
+}
