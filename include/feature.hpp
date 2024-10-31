@@ -10,7 +10,7 @@
 #include <opencv2/imgproc.hpp> 
 #include <opencv2/features2d.hpp>  
 
-#include "kdtree/kdtree.hpp"
+//#include "kdtree/kdtree.hpp"
 
 std::pair<std::vector<std::vector<cv::KeyPoint>>, std::vector<cv::Mat>> 
 getScaleInvariantFeatures(const std::vector<cv::Mat>& originalGrayImages,

@@ -4,17 +4,19 @@ if(NOT OpenCV_TAG)
     set(OpenCV_TAG "4.10.0")
 endif()
 
-find_package(OpenCV REQUIRED)
+set(OpenCV_INSTALL_DIR ${CMAKE_BINARY_DIR}/opencv-install)
+set(CMAKE_PREFIX_PATH ${OpenCV_INSTALL_DIR})
+find_package(OpenCV)
 
-if(OpenCV_FOUND)
+if(${OpenCV_FOUND})
     message(STATUS "OpenCV found: ${OpenCV_DIR}")
+    include_directories(${OpenCV_INCLUDE_DIRS})
 else()
-    message(WARNING "OpenCV not found. Building OpenCV from source.")
-
+    message(STATUS "OpenCV not found. Downloading and building from source...")
     include(ExternalProject)
     ExternalProject_Add(OpenCV
         GIT_REPOSITORY "https://github.com/opencv/opencv.git"
-        GIT_TAG "${OpenCV_TAG}"
+        GIT_TAG    "${OpenCV_TAG}"
         SOURCE_DIR ${CMAKE_BINARY_DIR}/opencv
         BINARY_DIR ${CMAKE_BINARY_DIR}/opencv-build
         CMAKE_ARGS
@@ -24,14 +26,16 @@ else()
             -DBUILD_opencv_apps=FALSE
             -DBUILD_SHARED_LIBS=TRUE
             -DWITH_CUDA=FALSE
+            -DBUILD_JAVA=FALSE
+            -DBUILD_opencv_python3=FALSE
             -DWITH_FFMPEG=FALSE
             -DBUILD_PERF_TESTS=FALSE
+            -DOPENCV_ENABLE_NONFREE=TRUE
             -DBUILD_opencv_java=OFF
-            -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/opencv
-            -DOPENCV_EXTRA_MODULES_PATH=./opencv_contrib/modules/xfeatures2d
+            -DCMAKE_INSTALL_PREFIX=${OpenCV_INSTALL_DIR}
     )
-    
-    set(OpenCV_DIR ${CMAKE_BINARY_DIR}/opencv)
-    include_directories(${OpenCV_DIR}/include)
-    link_directories(${OpenCV_DIR}/lib)
+    set(CMAKE_PREFIX_PATH ${OpenCV_INSTALL_DIR})
+    set(OpenCV_DIR ${OpenCV_INSTALL_DIR})
+    include_directories(${OpenCV_INCLUDE_DIRS})
+    link_directories(${OpenCV_CONFIG_PATH})
 endif()

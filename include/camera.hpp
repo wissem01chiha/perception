@@ -11,8 +11,18 @@
 #include "math.h"
 #include "utils.h"
 
-// Extract Camera Pose 
-//
+template<typename T>
+class Camera {
+
+}
+
+
+
+
+
+
+
+
 void extractCamera3DPose(const Eigen::Matrix3d E){
 
     Eigen::MatrixXd W;
