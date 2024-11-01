@@ -6,7 +6,9 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/build",
                 "/usr/local/include/opencv4/opencv2/**",
-                "/usr/include/opencv4"
+                "/usr/include/opencv4",
+                "/usr/include/eigen3",
+                "${workspaceFolder}/include/**"
             ],
             "defines": [],
             "cStandard": "c17",

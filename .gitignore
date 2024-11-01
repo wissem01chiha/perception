@@ -9,6 +9,7 @@
 build/
 datasets/
 extern/Eigen
+extern/libtensorflow-cpu-linux-x86_64/
 extern/d2-net.onnx
 .vscode/
 
